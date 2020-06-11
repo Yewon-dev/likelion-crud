@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +8,30 @@
     <title>Document</title>
 </head>
 <body>
+{% block content %}
     <!--for문을 이용하여 model post에 있는 모든 내용을 출력--> 
-    <button type='button' onclick='location.href="{% url "create" %}"'>새글쓰기</button>
-    {% for obj in posts.all %}  
-    <h1>제목 : {{ obj.title }}</h1>
-    <p>내용: {{ obj.body }}</p>
-    <p>올린날짜: {{ obj.date }}</p>
+    <button type="button" onclick='location.href="{% url "create" %}"' class="btn btn-primary btn-lg btn-block disabled ">글 쓰러가기👉</button>
+    <hr>
+    {% for obj in posts.all %}
+
+<div class="card border-secondary mb-3" style="max-width: 80rem; margin: 30px;" >
+
+    <div class="card-body">
+        <h3 class="card-title">{{ obj.title }}
+            <small class="text-muted">by {{ obj.author }}</small>
+        </h3>
+    <hr>
+    <p class="card-text">{{ obj.body }}</p>
+
     <a href="{% url 'detail' obj.pk %}">자세히 보기</a>
+    </div>
+    <div class="card-footer text-muted">
+    Posted on {{ obj.date }}
+    </div>
+</div>
+
     {% endfor %%}
+
+{% endblock content %}
 </body>
 </html>

@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +9,16 @@
     <title>Document</title>
 </head>
 <body>
+{% block content %}
+<div style="margin: 50px; padding: 20px;" class="card border-primary">
     <h1>글 수정하기</h1>
-
+    <hr>
     <form method = 'post' action=''>
         {% csrf_token %}    <!--django에서 POST방식으로 데이터를 전송할 때 기본으로 제공하는 보안수단-->
         {{ form.as_p }}     <!--form을 p태그를 이용해서 빈칸 생성-->
-        <input type='submit' value='등록하기' />    <!--등록하기 버튼만들기-->
+        <input type='submit' class="btn btn-outline-info" value='등록하기' />    <!--등록하기 버튼만들기-->
     </form>
-    
+</div>
+{% endblock content %}    
 </body>
 </html>
