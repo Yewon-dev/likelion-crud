@@ -1,1 +1,1 @@
-web: gunicorn blogprj.wsgi
+web: gunicorn startprj.wsgi --preload
